@@ -8,7 +8,7 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/react-homework-template">
+    <BrowserRouter basename="/react-homework">
       <App />
     </BrowserRouter>
   </React.StrictMode>
