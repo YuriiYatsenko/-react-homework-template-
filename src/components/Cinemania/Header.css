@@ -5,17 +5,7 @@
   text-align: center;
 }
 
-.header nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-.header nav ul li {
-  display: inline;
-  margin: 0 1rem;
-}
-
-.header nav ul li a {
-  color: white;
+.header a {
   text-decoration: none;
+  margin: 10px;
 }
