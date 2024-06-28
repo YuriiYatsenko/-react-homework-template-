@@ -1,7 +1,16 @@
 .header {
   background-color: #333;
   color: white;
-  padding: 1rem;
+  text-align: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  height: 30px;
   text-align: center;
 }
 
