@@ -1,26 +1,22 @@
-import React from 'react';
-import './MovieCard.css'; // Припустимо, що це файли стилів для MovieCard
+import React, { useContext } from 'react';
+import { MoviesContext } from './context/MoviesContext';
+import './MovieCard.css';
 
 const MovieCard = ({ movie }) => {
+  const { addToLibrary } = useContext(MoviesContext);
+
   return (
     <div className="movie-card">
       <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
-      <div className="info">
-        <h2>{movie.title}</h2>
-        <p><strong>Release Date:</strong> {movie.release_date}</p>
-        <p><strong>Overview:</strong> {movie.overview}</p>
-        <p><strong>Original Title:</strong> {movie.original_title}</p>
-        <p><strong>Original Language:</strong> {movie.original_language}</p>
-        <p><strong>Popularity:</strong> {movie.popularity}</p>
-        <p><strong>Vote Average:</strong> {movie.vote_average}</p>
-        <p><strong>Vote Count:</strong> {movie.vote_count}</p>
-        <p><strong>Genres:</strong> {movie.genre_ids.map(genre => <span key={genre}>{genre}</span>)}</p>
-      </div>
+      <h3>{movie.title}</h3>
+      <p>{movie.release_date}</p>
+      <button onClick={() => addToLibrary(movie)}>Add to Library</button>
     </div>
   );
 };
 
 export default MovieCard;
+
 
 
 

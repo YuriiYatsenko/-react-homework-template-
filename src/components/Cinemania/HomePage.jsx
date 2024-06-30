@@ -8,13 +8,10 @@ const HomePage = () => {
   useEffect(() => {
     // Fetch trending movies
     fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=e228a48ce493c266d1ac0e25cdb4d9c4')
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        setMovies(data.results);
-      })
+      .then(response => response.json())
+      .then(data => setMovies(data.results))
       .catch(error => {
+        // Handle error if needed
       });
   }, []);
 

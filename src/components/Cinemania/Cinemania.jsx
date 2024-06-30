@@ -6,6 +6,7 @@ import './Cinemania.css';
 
 const HomePage = lazy(() => import('./HomePage'));
 const MovieDetails = lazy(() => import('./MovieDetails'));
+const Library = lazy(() => import('./Library'));
 
 const Cinemania = () => {
   return (
@@ -15,6 +16,7 @@ const Cinemania = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies/:movieId" element={<MovieDetails />} />
+          <Route path="/library" element={<Library />} />
         </Routes>
       </Suspense>
       <Footer />
@@ -23,4 +25,5 @@ const Cinemania = () => {
 };
 
 export default Cinemania;
+
 
