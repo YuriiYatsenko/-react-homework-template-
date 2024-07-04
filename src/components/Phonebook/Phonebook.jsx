@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, deleteContact, updateFilter } from '../../redux/contactsSlice';
-import { nanoid } from 'nanoid';
+import { fetchContacts, addContact, deleteContact, updateFilter } from '../../redux/contactsSlice';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
@@ -9,8 +8,14 @@ import './Phonebook.css';
 
 const Phonebook = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(state => state.contacts.items);
+  const filter = useSelector(state => state.contacts.filter);
+  const isLoading = useSelector(state => state.contacts.isLoading);
+  const error = useSelector(state => state.contacts.error);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const handleAddContact = ({ name, number }) => {
     if (contacts.find(contact => contact.name === name)) {
@@ -18,7 +23,7 @@ const Phonebook = () => {
       return;
     }
 
-    dispatch(addContact({ id: nanoid(), name, number }));
+    dispatch(addContact({ name, number }));
   };
 
   const handleDeleteContact = contactId => {
@@ -43,11 +48,11 @@ const Phonebook = () => {
       <ContactForm onAddContact={handleAddContact} />
       <h2>Contacts</h2>
       <Filter value={filter} onChange={handleFilterChange} />
+      {isLoading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
       <ContactList contacts={filteredContacts} onDeleteContact={handleDeleteContact} />
     </div>
   );
 };
 
 export default Phonebook;
-
-

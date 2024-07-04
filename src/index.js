@@ -1,5 +1,6 @@
+// src/index.js
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -8,16 +9,16 @@ import { MoviesProvider } from './components/Cinemania/context/MoviesContext';
 import App from './components/App.jsx';
 import './index.css';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <MoviesProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </MoviesProvider>
-    </PersistGate>
-  </Provider>,
-  document.getElementById('root')
+createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <MoviesProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </MoviesProvider>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
-

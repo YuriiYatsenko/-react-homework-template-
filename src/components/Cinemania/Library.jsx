@@ -4,7 +4,7 @@ import MovieCard from './MovieCard';
 import './Library.css';
 
 const Library = () => {
-  const { library, removeFromLibrary } = useContext(MoviesContext);
+  const { library } = useContext(MoviesContext);
 
   return (
     <div className="library">
@@ -13,7 +13,6 @@ const Library = () => {
         {library.map(movie => (
           <div key={movie.id}>
             <MovieCard movie={movie} />
-            <button onClick={() => removeFromLibrary(movie.id)}>Remove</button>
           </div>
         ))}
       </div>
